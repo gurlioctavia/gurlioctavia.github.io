@@ -150,7 +150,6 @@
       <nav class="nav">
         <a href="gurli-octavia.html">Gurli Octavia</a>
         <a href="#bio">Biography</a>
-        <a href="#sampler">Sampler</a>
         <a href="#credentials">Credentials</a>
         <a href="#professional-record">Professional record</a>
         <a href="#methods-tools">Methods and tools</a>
@@ -174,12 +173,12 @@
       <p>Her practice has been developed through multi-year, remote practice as research across international contexts, combining field recording, demo development, composition, recording, writing, and production while moving between travel and studio environments. Documented study and residency periods are listed for the UK, with additional residency and short-term work periods documented across the UK, France, Germany, and the US, 2017-2025. Additional working locations include Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, Ireland.</p>
     </section>
 
-    <section id="sampler" class="card">
-      <h1>Practice sampler</h1>
-      <p class="muted">Click to generate a new log line.</p>
-      <p id="logline"></p>
-      <button class="btn" type="button" id="newlog">New log line</button>
-    </section>
+  <section id="sampler" class="card">
+  <h1>Score sampler</h1>
+  <p class="muted">Click to generate a short constraint set.</p>
+  <p id="scoreline"></p>
+  <button class="btn" type="button" id="newscore">New score</button>
+</section>
 
     <section id="credentials" class="card">
       <h1>Credentials</h1>
@@ -240,33 +239,38 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    (function(){
-      const locations = ["UK","FR","DE","US","Thailand","Malaysia","Italy","Spain","Portugal","Holland","India","Ireland"];
-      const contexts = ["airport transit","temporary room setup","studio session","residency workspace","field recording walk","mobile writing session"];
-      const methods = ["field recording","demo development","composition","recording","writing","production"];
-      const systems = ["Logic Pro X","Pro Tools","SSL","Dolby Atmos","Audient","Telefunken 251"];
+   <script>
+  (function(){
+    const materials = ["voice","field recording","sine tone","drone","noise","piano","one-shot sample","found text"];
+    const constraint = ["one take","no quantization","one track only","two chords only","fixed tempo","no reverb","one mic position","mono only"];
+    const focus = ["spectral detail","rhythm grid drift","dynamic range","negative space","timbre morphing","micro-melody","text clarity","room tone"];
+    const duration = ["30 seconds","1 minute","2 minutes","5 minutes","10 minutes"];
+    const output = ["demo sketch","notation note","field capture","mix study","arrangement draft","lyric fragment"];
 
-      const el = document.getElementById("logline");
-      const btn = document.getElementById("newlog");
-      if(!el || !btn) return;
+    const el = document.getElementById("scoreline");
+    const btn = document.getElementById("newscore");
+    if(!el || !btn) return;
 
-      function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-      function line(){
-        return [
-          "Log:",
-          pick(methods),
-          "in",
-          pick(contexts) + ",",
-          "location",
-          pick(locations) + ",",
-          "toolchain",
-          pick(systems) + "."
-        ].join(" ");
-      }
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+    function line(){
+      return [
+        "Score:",
+        "Make a",
+        pick(output) + ".",
+        "Material:",
+        pick(materials) + ".",
+        "Constraint:",
+        pick(constraint) + ".",
+        "Focus:",
+        pick(focus) + ".",
+        "Duration:",
+        pick(duration) + "."
+      ].join(" ");
+    }
 
-      btn.addEventListener("click", ()=>{ el.textContent = line(); });
-      el.textContent = line();
-    })();
-  </script>
+    btn.addEventListener("click", ()=>{ el.textContent = line(); });
+    el.textContent = line();
+  })();
+</script>
 </body>
 </html>

@@ -89,6 +89,31 @@
       background:rgba(47,127,122,.12);
       border:1px solid rgba(47,127,122,.18);
     }
+    .nav-min{
+  gap:10px;
+  flex-wrap:nowrap;
+}
+
+@media (max-width: 640px){
+  .top{
+    position:static;
+    backdrop-filter:none;
+  }
+
+  .top .wrap{
+    padding:14px 16px;
+  }
+
+  .brand{
+    font-size:16px;
+  }
+
+  .nav a{
+    padding:6px 8px;
+    font-size:14px;
+    white-space:nowrap;
+  }
+}
 
     .hero{ padding:42px 0 18px; }
     .hero h1{
@@ -148,16 +173,10 @@
   <header class="top">
     <div class="wrap">
       <a class="brand" href="#top">Gurli O.K.</a>
-      <nav class="nav">
-        <a href="gurli-octavia.html">Gurli Octavia</a>
-        <a href="#bio">Biography</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#professional-record">Professional record</a>
-        <a href="#methods-tools">Methods and tools</a>
-        <a href="#selected-works">Selected works</a>
-        <a href="#international">International</a>
-        <a href="#sampler">Sampler</a>
-      </nav>
+      <nav class="nav nav-min">
+  <a href="#top">Gurli O.K.</a>
+  <a href="gurli-octavia.html">Gurli Octavia</a>
+</nav>
     </div>
   </header>
 

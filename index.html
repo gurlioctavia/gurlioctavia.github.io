@@ -1,124 +1,223 @@
-:root{
-  --bg:#0b1f22;
-  --panel:#102a2f;
-  --panel-2:#0f252a;
-  --text:#d5dddd;
-  --muted:#93a7a7;
-  --accent:#3aa6a6;
-  --headline:#d4a23a;
-  --line:rgba(213,221,221,.14);
-  --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gurli O.K.</title>
+  <meta name="description" content="Gurli O.K." />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
 
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
+  <style>
+    :root{
+      --bg:#6f9f9b;
+      --panel:#eef2f1;
+      --text:#2b2e2d;
+      --muted:#5f6f6c;
+      --accent:#2f7f7a;
+      --headline:#b07a1f;
+      --line:rgba(0,0,0,.12);
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.12);
+    }
 
-body{
-  font-family:"Courier Prime", Courier, monospace;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-rendering:optimizeLegibility;
-}
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
 
-a{
-  color:var(--accent);
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
+    body{
+      font-family:"Courier Prime", Courier, monospace;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
+    }
 
-h1,h2{
-  color:var(--headline);
-  font-weight:600;
-}
+    a{
+      color:var(--accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
 
-.wrap{
-  max-width:720px;
-  margin:0 auto;
-  padding:24px;
-}
+    h1, h2{ color:var(--headline); font-weight:600; }
 
-.top{
-  position:sticky;
-  top:0;
-  z-index:10;
-  backdrop-filter:blur(10px);
-  background:rgba(11,31,34,.86);
-  border-bottom:1px solid var(--line);
-}
+    .wrap{
+      max-width:720px;
+      margin:0 auto;
+      padding:24px;
+    }
 
-.top .wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
+    .top{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(10px);
+      background:rgba(238,242,241,.85);
+      border-bottom:1px solid var(--line);
+    }
 
-.brand{
-  color:var(--text);
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:.04em;
-}
+    .top .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
 
-.nav{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
+    .brand{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
 
-.nav a{
-  text-decoration:none;
-  color:var(--muted);
-  padding:6px 8px;
-  border-radius:999px;
-}
+    .nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
-.nav a:hover{
-  color:var(--text);
-  background:rgba(58,166,166,.12);
-  border:1px solid rgba(58,166,166,.18);
-}
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 8px;
+      border-radius:999px;
+    }
 
-.hero{ padding:42px 0 18px; }
-.hero h1{
-  margin:0 0 6px;
-  font-size:48px;
-  letter-spacing:-.02em;
-}
-.kicker{ margin:0; color:var(--muted); }
+    .nav a:hover{
+      color:var(--text);
+      background:rgba(47,127,122,.12);
+      border:1px solid rgba(47,127,122,.18);
+    }
 
-.card{
-  background:linear-gradient(180deg, var(--panel), var(--panel-2));
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:18px;
-  margin:18px 0;
-  box-shadow:var(--shadow);
-  color:var(--text);
-}
+    .hero{ padding:42px 0 18px; }
+    .hero h1{
+      margin:0 0 6px;
+      font-size:48px;
+      letter-spacing:-.02em;
+    }
+    .kicker{ margin:0; color:var(--muted); }
 
-.card h1{
-  font-size:18px;
-  margin:0 0 10px;
-  letter-spacing:.01em;
-}
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+      color:var(--text);
+    }
 
-.card p{ margin:0 0 12px; }
-.card p:last-child{ margin-bottom:0; }
+    .card h1{
+      font-size:18px;
+      margin:0 0 10px;
+      letter-spacing:.01em;
+    }
 
-.list{
-  margin:10px 0 0;
-  padding-left:18px;
-}
+    .card p{ margin:0 0 12px; }
+    .card p:last-child{ margin-bottom:0; }
 
-.list li{ margin:6px 0; }
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+    }
 
-.muted{ color:var(--muted); }
-.foot{ padding:22px 0 34px; }
+    .list li{ margin:6px 0; }
 
-em{ font-style:italic; color:var(--text); }
-strong{ color:var(--text); }
+    .muted{ color:var(--muted); }
+    .foot{ padding:22px 0 34px; }
+
+    em,strong{ color:var(--text); }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#top">Gurli O.K.</a>
+      <nav class="nav">
+        <a href="gurli-octavia.html">Gurli Octavia</a>
+        <a href="#bio">Biography</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#professional-record">Professional record</a>
+        <a href="#methods-tools">Methods and tools</a>
+        <a href="#selected-works">Selected works</a>
+        <a href="#international">International</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <h1>Gurli O.K.</h1>
+      <p class="kicker">Gurli Octavia Kofoed</p>
+    </section>
+
+    <section id="bio" class="card">
+      <h1>Biography</h1>
+      <p>Gurli O.K. is a composer, writer, and producer with formal training in songwriting and music production. She holds an MA in Creative Music Production, ICMP, London, 2025, and a BA in Songwriting, Det Jyske Musikkonservatorium, 2020. Her work spans composition, production, and release execution across EP and album formats.</p>
+      <p>Her professional record includes booking agreements with Beatbox Booking, 2017-2019, and Bullet Booking, 2019-2022, alongside recording and collaboration contracts with LACOBR, 2016-2018, and Sony, 2018-2020. Releases have been supported by live activity and radio support, including DR P6, DR P4, and BBC 6.</p>
+      <p>Her release catalogue includes the album <em>I Could Be Blossoming Instead</em>, 2021, and EP releases including <em>Metanoia</em>, 2019, Sony, as well as <em>Lunacy</em>, LACOBR, and <em>Philophobia</em>. Work is developed through production toolchains including Logic Pro X and Pro Tools, with studio contexts involving SSL, Dolby Atmos, and microphone systems such as Telefunken 251.</p>
+      <p>Her practice has been developed through multi-year, remote practice as research across international contexts, combining field recording, demo development, composition, recording, writing, and production while moving between travel and studio environments. Documented study and residency periods are listed for the UK, with additional residency and short-term work periods documented across the UK, France, Germany, and the US, 2017-2025. Additional working locations include Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, and Ireland.</p>
+    </section>
+
+    <section id="credentials" class="card">
+      <h1>Credentials</h1>
+      <ul class="list">
+        <li>MA, Creative Music Production, ICMP, London, 2025</li>
+        <li>BA, Songwriting, Det Jyske Musikkonservatorium, 2020</li>
+      </ul>
+    </section>
+
+    <section id="professional-record" class="card">
+      <h1>Professional record</h1>
+      <ul class="list">
+        <li>Booking agreement, Beatbox Booking, 2017-2019</li>
+        <li>Booking agreement, Bullet Booking, 2019-2022</li>
+        <li>Recording and collaboration contract, LACOBR, 2016-2018</li>
+        <li>Recording and collaboration contract, Sony, 2018-2020</li>
+        <li>Production and studio toolchains: Logic Pro X, Pro Tools, SSL, Audient</li>
+        <li>Live activity and radio support documented in relation to releases</li>
+      </ul>
+    </section>
+
+    <section id="methods-tools" class="card">
+      <h1>Methods and tools</h1>
+      <ul class="list">
+        <li>DAW workflows: Logic Pro X, Pro Tools</li>
+        <li>Studio contexts: SSL, Dolby Atmos</li>
+        <li>Recording capture: field recordings and studio recording sessions</li>
+        <li>Microphone systems referenced: Telefunken 251</li>
+      </ul>
+    </section>
+
+    <section id="selected-works" class="card">
+      <h1>Selected works</h1>
+      <ul class="list">
+        <li><em>I Could Be Blossoming Instead</em>, album, 2021</li>
+        <li><em>Metanoia</em>, EP, 2019, Sony</li>
+        <li><em>Lunacy</em>, EP, year unknown, LACOBR</li>
+        <li><em>Philophobia</em>, EP, year unknown</li>
+      </ul>
+    </section>
+
+    <section id="international" class="card">
+      <h1>International practice</h1>
+      <ul class="list">
+        <li>Multi-year remote practice as research across travel and studio environments</li>
+        <li>Methods used in transit and on location: field recording, demo development, composition, recording, writing, production</li>
+        <li>Documented study and residency periods: UK, 2017-2025</li>
+        <li>Additional documented residency or short-term work periods: UK, FR, DE, US, 2017-2025</li>
+        <li>Additional working locations: Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, Ireland</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <p class="muted">© <span id="y"></span> Gurli O.K.</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

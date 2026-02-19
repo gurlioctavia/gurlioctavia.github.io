@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gurli Octavia</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0e1414;
+      --panel:#141c1c;
+      --text:#eaeeee;
+      --muted:#9fb1ad;
+      --accent:#3aa6a6;
+      --headline:#d4a23a;
+      --line:rgba(255,255,255,.12);
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+
+    body{
+      font-family:"Courier Prime", Courier, monospace;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    h1, h2{ color:var(--headline); }
+
+    .wrap{
+      max-width:720px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+    }
+
+    .links a{
+      display:inline-block;
+      margin-right:14px;
+      margin-top:6px;
+    }
+
+    .muted{ color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <section class="card">
+      <h1>Gurli Octavia</h1>
+      <p class="muted">Artist · Songwriter</p>
+    </section>
+
+    <section class="card">
+      <h2>Short artist bio</h2>
+      <p>
+        Gurli Octavia is a Danish artist and songwriter working with
+        intimate, narrative-driven songs across contemporary pop
+        and alternative forms.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Music</h2>
+      <div class="links">
+        <a href="https://open.spotify.com" target="_blank">Spotify</a>
+        <a href="https://bandcamp.com" target="_blank">Bandcamp</a>
+        <a href="https://soundcloud.com" target="_blank">SoundCloud</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <p class="muted">
+        Looking for the professional record and formal biography?
+        <br>
+        <a href="index.html">Go to Gurli O.K.</a>
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>

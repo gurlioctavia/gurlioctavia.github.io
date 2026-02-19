@@ -139,7 +139,8 @@
       cursor:pointer;
     }
     .btn:hover{ background:rgba(47,127,122,.16); }
-    #logline{ margin:10px 0 14px; }
+
+    #scoreline{ margin:10px 0 14px; }
   </style>
 </head>
 
@@ -155,7 +156,7 @@
         <a href="#methods-tools">Methods and tools</a>
         <a href="#selected-works">Selected works</a>
         <a href="#international">International</a>
-               <a href="#sampler">Sampler</a>
+        <a href="#sampler">Sampler</a>
       </nav>
     </div>
   </header>
@@ -174,12 +175,12 @@
       <p>Her practice has been developed through multi-year, remote practice as research across international contexts, combining field recording, demo development, composition, recording, writing, and production while moving between travel and studio environments. Documented study and residency periods are listed for the UK, with additional residency and short-term work periods documented across the UK, France, Germany, and the US, 2017-2025. Additional working locations include Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, Ireland.</p>
     </section>
 
-  <section id="sampler" class="card">
-  <h1>Score sampler</h1>
-  <p class="muted">Click to generate a short constraint set.</p>
-  <p id="scoreline"></p>
-  <button class="btn" type="button" id="newscore">New score</button>
-</section>
+    <section id="sampler" class="card">
+      <h1>Score sampler</h1>
+      <p class="muted">Click to generate a short constraint set.</p>
+      <p id="scoreline"></p>
+      <button class="btn" type="button" id="newscore">New score</button>
+    </section>
 
     <section id="credentials" class="card">
       <h1>Credentials</h1>
@@ -238,40 +239,42 @@
   </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", function () {
+      const y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
 
-   <script>
-  (function(){
-    const materials = ["voice","field recording","sine tone","drone","noise","piano","one-shot sample","found text"];
-    const constraint = ["one take","no quantization","one track only","two chords only","fixed tempo","no reverb","one mic position","mono only"];
-    const focus = ["spectral detail","rhythm grid drift","dynamic range","negative space","timbre morphing","micro-melody","text clarity","room tone"];
-    const duration = ["30 seconds","1 minute","2 minutes","5 minutes","10 minutes"];
-    const output = ["demo sketch","notation note","field capture","mix study","arrangement draft","lyric fragment"];
+      const el = document.getElementById("scoreline");
+      const btn = document.getElementById("newscore");
+      if (!el || !btn) return;
 
-    const el = document.getElementById("scoreline");
-    const btn = document.getElementById("newscore");
-    if(!el || !btn) return;
+      const materials = ["voice","field recording","sine tone","drone","noise","piano","one-shot sample","found text"];
+      const constraint = ["one take","no quantization","one track only","two chords only","fixed tempo","no reverb","one mic position","mono only"];
+      const focus = ["spectral detail","rhythm grid drift","dynamic range","negative space","timbre morphing","micro-melody","text clarity","room tone"];
+      const duration = ["30 seconds","1 minute","2 minutes","5 minutes","10 minutes"];
+      const output = ["demo sketch","notation note","field capture","mix study","arrangement draft","lyric fragment"];
 
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-    function line(){
-      return [
-        "Score:",
-        "Make a",
-        pick(output) + ".",
-        "Material:",
-        pick(materials) + ".",
-        "Constraint:",
-        pick(constraint) + ".",
-        "Focus:",
-        pick(focus) + ".",
-        "Duration:",
-        pick(duration) + "."
-      ].join(" ");
-    }
+      function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+      function line(){
+        return [
+          "Score:",
+          "Make a",
+          pick(output) + ".",
+          "Material:",
+          pick(materials) + ".",
+          "Constraint:",
+          pick(constraint) + ".",
+          "Focus:",
+          pick(focus) + ".",
+          "Duration:",
+          pick(duration) + "."
+        ].join(" ");
+      }
 
-    btn.addEventListener("click", ()=>{ el.textContent = line(); });
-    el.textContent = line();
-  })();
-</script>
+      function render(){ el.textContent = line(); }
+
+      btn.addEventListener("click", render);
+      render();
+    });
+  </script>
 </body>
 </html>

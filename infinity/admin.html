@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Infinity Letter Admin</title>
+  <style>
+    body{font:16px system-ui;margin:24px;max-width:900px}
+    textarea{width:100%;min-height:140px;padding:12px;font:16px system-ui}
+    input{width:100%;padding:10px 12px;font:16px system-ui}
+    button{font:inherit;padding:10px 14px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .meta{opacity:.7}
+    .panel{border:1px solid #eee;border-radius:14px;padding:14px;margin:14px 0}
+    .err{opacity:1}
+    pre{white-space:pre-wrap;background:#f6f6f6;padding:12px;border-radius:12px;overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>Infinity Letter Admin</h1>
+
+  <div class="panel">
+    <p class="meta">Enter admin key:</p>
+    <input id="key" placeholder="Admin key" />
+    <div class="row" style="margin-top:10px">
+      <button id="unlock">Unlock</button>
+      <span class="meta" id="msg"></span>
+    </div>
+  </div>
+
+  <div id="controls" class="panel" style="display:none">
+    <h2 style="margin:0 0 10px 0">Controls</h2>
+
+    <p class="meta">Seed / intro text (everyone sees this):</p>
+    <textarea id="seed"></textarea>
+
+    <div class="row" style="margin-top:10px">
+      <button id="saveSeed">Save seed</button>
+      <button id="open">Open</button>
+      <button id="close">Close</button>
+      <button id="reset">Reset (clears letter)</button>
+    </div>
+
+    <h3 style="margin:18px 0 8px 0">Current public state</h3>
+    <pre id="state">(loading…)</pre>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ====== PASTE YOUR SUPABASE DETAILS HERE ======
+    const SUPABASE_URL = "https://zfjifobxbvjbnzntzhfq.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_q77ViXgTiWvPhQFT14Ap8g_yKV4Joyu"; // or anon legacy key
+    // ============================================
+
+    // ====== SET YOUR ADMIN PASSWORD HERE ======
+    const ADMIN_SECRET = "$lukd3jRid/havltredsHSjsl";
+    // =========================================
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const $msg = document.getElementById("msg");
+    const $controls = document.getElementById("controls");
+    const $state = document.getElementById("state");
+
+    function setMsg(t, isErr=false){
+      $msg.textContent = t || "";
+      $msg.className = isErr ? "meta err" : "meta";
+    }
+
+    async function loadState(){
+      const { data, error } = await sb.rpc("infinity_public_state");
+      if (error) { $state.textContent = error.message; return; }
+      const s = data?.[0];
+      if (!s) { $state.textContent = "Missing."; return; }
+      $state.textContent = JSON.stringify(s, null, 2);
+    }
+
+    function requireKey(){
+      const k = document.getElementById("key").value;
+      if (k !== ADMIN_SECRET) {
+        setMsg("Bad key.", true);
+        return false;
+      }
+      setMsg("");
+      return true;
+    }
+
+    document.getElementById("unlock").onclick = async () => {
+      if (!requireKey()) return;
+      $controls.style.display = "block";
+
+      const { data } = await sb.rpc("infinity_public_state");
+      const s = data?.[0];
+      if (s) document.getElementById("seed").value = s.seed_text || "";
+
+      await loadState();
+    };
+
+    document.getElementById("saveSeed").onclick = async () => {
+      if (!requireKey()) return;
+
+      const seed = document.getElementById("seed").value || "";
+      setMsg("Saving…");
+      const { error } = await sb.rpc("infinity_admin_set_seed", { p_seed: seed });
+      if (error) return setMsg(error.message, true);
+
+      setMsg("Saved.");
+      await loadState();
+    };
+
+    document.getElementById("open").onclick = async () => {
+      if (!requireKey()) return;
+
+      setMsg("Opening…");
+      const { error } = await sb.rpc("infinity_admin_set_status", { p_status: "open" });
+      if (error) return setMsg(error.message, true);
+
+      setMsg("Open.");
+      await loadState();
+    };
+
+    document.getElementById("close").onclick = async () => {
+      if (!requireKey()) return;
+
+      setMsg("Closing…");
+      const { error } = await sb.rpc("infinity_admin_set_status", { p_status: "closed" });
+      if (error) return setMsg(error.message, true);
+
+      setMsg("Closed.");
+      await loadState();
+    };
+
+    document.getElementById("reset").onclick = async () => {
+      if (!requireKey()) return;
+
+      setMsg("Resetting…");
+      const { error } = await sb.rpc("infinity_admin_reset");
+      if (error) return setMsg(error.message, true);
+
+      setMsg("Reset.");
+      await loadState();
+    };
+  </script>
+</body>
+</html>

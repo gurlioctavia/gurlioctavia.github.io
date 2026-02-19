@@ -1,39 +1,68 @@
+/* =========================
+   COLOR SYSTEM
+   ========================= */
 :root{
-  --bg:#0e1414;
-  --panel:#141c1c;
-  --text:#eaeeee;
-  --muted:#9fb1ad;
-  --accent:#3aa6a6;
-  --headline:#d4a23a;
+  --bg:#0e1414;              /* deep teal background */
+  --panel:#141c1c;           /* cards */
+  --text:#eaeeee;            /* main text */
+  --muted:#9fb1ad;           /* secondary text */
+  --accent:#3aa6a6;          /* links / highlights */
+  --headline:#d4a23a;        /* curry headlines */
   --line:rgba(255,255,255,.12);
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
-h1, h2{ color: var(--headline); }
-a{ color: var(--accent); }
+
+/* =========================
+   BASE RESET
+   ========================= */
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
 
+/* =========================
+   TYPOGRAPHY
+   ========================= */
 body{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 700px at 25% 10%, #1b1b22, var(--bg));
+  font-family: "Courier Prime", Courier, monospace;
+  background: var(--bg);
   color: var(--text);
   line-height: 1.7;
 }
 
-a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+/* headlines */
+h1, h2{
+  color: var(--headline);
+  font-weight: 600;
+}
+
+/* =========================
+   LINKS
+   ========================= */
+a{
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 a:hover{ opacity:.9; }
 
+/* =========================
+   LAYOUT
+   ========================= */
 .wrap{
   max-width: 720px;
   margin: 0 auto;
   padding: 24px;
 }
 
+/* =========================
+   TOP NAV
+   ========================= */
 .top{
   position: sticky;
   top: 0;
   z-index: 10;
   backdrop-filter: blur(10px);
-  background: rgba(11,11,12,.70);
+  background: rgba(14,20,20,.85);
   border-bottom: 1px solid var(--line);
 }
 
@@ -41,86 +70,54 @@ a:hover{ opacity:.9; }
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap: 16px;
+  gap:16px;
 }
 
 .brand{
-  text-decoration: none;
-  font-weight: 650;
-  letter-spacing: .01em;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.04em;
 }
 
 .nav{
   display:flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .nav a{
-  text-decoration: none;
-  color: var(--muted);
-  padding: 6px 8px;
-  border-radius: 999px;
+  text-decoration:none;
+  color:var(--muted);
+  padding:6px 8px;
+  border-radius:999px;
 }
 
 .nav a:hover{
-  color: var(--text);
-  background: rgba(255,255,255,.06);
+  color:var(--headline);
+  background:rgba(255,255,255,.06);
 }
 
-.hero{ padding: 42px 0 12px; }
-
-.hero-inner{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  align-items: start;
+/* =========================
+   HERO
+   ========================= */
+.hero{
+  padding:42px 0 18px;
 }
 
-h1{
-  font-size: 52px;
-  margin: 0 0 8px;
-  letter-spacing: -.02em;
+.hero h1{
+  font-size:48px;
+  margin:0 0 6px;
+  letter-spacing:-.02em;
 }
 
-.kicker{ margin: 0 0 14px; color: var(--muted); }
-.lead{ margin: 0; max-width: 70ch; }
-
-.hero-card{
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
+.kicker{
+  margin:0;
+  color:var(--muted);
 }
 
-.label{
-  margin: 0 0 10px;
-  color: var(--muted);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-.facts{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.facts li{
-  display:grid;
-  grid-template-columns: 90px 1fr;
-  gap: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--line);
-}
-
-.facts li:first-child{ border-top: none; padding-top: 0; }
-.facts span:first-child{ color: var(--muted); }
-
+/* =========================
+   CARDS / SECTIONS
+   ========================= */
 .card{
   background: var(--panel);
   border: 1px solid var(--line);
@@ -130,23 +127,24 @@ h1{
   box-shadow: var(--shadow);
 }
 
-h2{
-  margin: 0 0 10px;
-  font-size: 18px;
-  letter-spacing: .01em;
+.card h1{
+  font-size:18px;
+  margin:0 0 10px;
 }
 
+/* =========================
+   LISTS
+   ========================= */
 .list{
-  margin: 10px 0 0;
-  padding-left: 18px;
+  margin:10px 0 0;
+  padding-left:18px;
 }
 
+/* =========================
+   MISC
+   ========================= */
 .muted{ color: var(--muted); }
 
 .foot{
   padding: 22px 0 34px;
-}
-
-@media (min-width: 900px){
-  .hero-inner{ grid-template-columns: 1.25fr .75fr; }
 }

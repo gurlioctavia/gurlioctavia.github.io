@@ -38,6 +38,7 @@
       text-decoration:underline;
       text-underline-offset:3px;
     }
+    a:hover{ opacity:.9; }
 
     h1, h2{ color:var(--headline); font-weight:600; }
 
@@ -127,6 +128,18 @@
     .foot{ padding:22px 0 34px; }
 
     em,strong{ color:var(--text); }
+
+    .btn{
+      font:inherit;
+      color:var(--text);
+      background:rgba(47,127,122,.10);
+      border:1px solid rgba(47,127,122,.22);
+      padding:8px 10px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+    .btn:hover{ background:rgba(47,127,122,.16); }
+    #logline{ margin:10px 0 14px; }
   </style>
 </head>
 
@@ -137,6 +150,7 @@
       <nav class="nav">
         <a href="gurli-octavia.html">Gurli Octavia</a>
         <a href="#bio">Biography</a>
+        <a href="#sampler">Sampler</a>
         <a href="#credentials">Credentials</a>
         <a href="#professional-record">Professional record</a>
         <a href="#methods-tools">Methods and tools</a>
@@ -157,16 +171,16 @@
       <p>Gurli O.K. is a composer, writer, and producer with formal training in songwriting and music production. She holds an MA in Creative Music Production, ICMP, London, 2025, and a BA in Songwriting, Det Jyske Musikkonservatorium, 2020. Her work spans composition, production, and release execution across EP and album formats.</p>
       <p>Her professional record includes booking agreements with Beatbox Booking, 2017-2019, and Bullet Booking, 2019-2022, alongside recording and collaboration contracts with LACOBR, 2016-2018, and Sony, 2018-2020. Releases have been supported by live activity and radio support, including DR P6, DR P4, and BBC 6.</p>
       <p>Her release catalogue includes the album <em>I Could Be Blossoming Instead</em>, 2021, and EP releases including <em>Metanoia</em>, 2019, Sony, as well as <em>Lunacy</em>, LACOBR, and <em>Philophobia</em>. Work is developed through production toolchains including Logic Pro X and Pro Tools, with studio contexts involving SSL, Dolby Atmos, and microphone systems such as Telefunken 251.</p>
-      <p>Her practice has been developed through multi-year, remote practice as research across international contexts, combining field recording, demo development, composition, recording, writing, and production while moving between travel and studio environments. Documented study and residency periods are listed for the UK, with additional residency and short-term work periods documented across the UK, France, Germany, and the US, 2017-2025. Additional working locations include Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, and Ireland.</p>
+      <p>Her practice has been developed through multi-year, remote practice as research across international contexts, combining field recording, demo development, composition, recording, writing, and production while moving between travel and studio environments. Documented study and residency periods are listed for the UK, with additional residency and short-term work periods documented across the UK, France, Germany, and the US, 2017-2025. Additional working locations include Thailand, Malaysia, Italy, Spain, Portugal, Holland, India, Ireland.</p>
     </section>
 
-<section id="sampler" class="card">
-  <h1>Practice sampler</h1>
-  <p class="muted">Click to generate a new log line.</p>
-  <p id="logline"></p>
-  <button class="btn" type="button" id="newlog">New log line</button>
-</section>
-    
+    <section id="sampler" class="card">
+      <h1>Practice sampler</h1>
+      <p class="muted">Click to generate a new log line.</p>
+      <p id="logline"></p>
+      <button class="btn" type="button" id="newlog">New log line</button>
+    </section>
+
     <section id="credentials" class="card">
       <h1>Credentials</h1>
       <ul class="list">
@@ -225,6 +239,34 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    (function(){
+      const locations = ["UK","FR","DE","US","Thailand","Malaysia","Italy","Spain","Portugal","Holland","India","Ireland"];
+      const contexts = ["airport transit","temporary room setup","studio session","residency workspace","field recording walk","mobile writing session"];
+      const methods = ["field recording","demo development","composition","recording","writing","production"];
+      const systems = ["Logic Pro X","Pro Tools","SSL","Dolby Atmos","Audient","Telefunken 251"];
+
+      const el = document.getElementById("logline");
+      const btn = document.getElementById("newlog");
+      if(!el || !btn) return;
+
+      function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+      function line(){
+        return [
+          "Log:",
+          pick(methods),
+          "in",
+          pick(contexts) + ",",
+          "location",
+          pick(locations) + ",",
+          "toolchain",
+          pick(systems) + "."
+        ].join(" ");
+      }
+
+      btn.addEventListener("click", ()=>{ el.textContent = line(); });
+      el.textContent = line();
+    })();
   </script>
 </body>
 </html>

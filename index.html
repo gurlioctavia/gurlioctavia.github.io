@@ -1,11 +1,113 @@
 <!doctype html>
 <html lang="en">
-<head> <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gurli O.K.</title>
   <meta name="description" content="Gurli O.K." />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0e1414;
+      --panel:#141c1c;
+      --text:#eaeeee;
+      --muted:#9fb1ad;
+      --accent:#3aa6a6;
+      --headline:#d4a23a;
+      --line:rgba(255,255,255,.12);
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+
+    body{
+      font-family:"Courier Prime", Courier, monospace;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{
+      color:var(--accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    h1, h2{ color:var(--headline); }
+
+    .wrap{
+      max-width:720px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    .top{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(10px);
+      background:rgba(14,20,20,.85);
+      border-bottom:1px solid var(--line);
+    }
+
+    .top .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.04em;
+    }
+
+    .nav{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:6px 8px;
+      border-radius:999px;
+    }
+
+    .nav a:hover{
+      color:var(--headline);
+      background:rgba(255,255,255,.06);
+    }
+
+    .hero{ padding:42px 0 18px; }
+    .hero h1{
+      margin:0 0 6px;
+      font-size:48px;
+      letter-spacing:-.02em;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+    }
+
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+    }
+
+    .muted{ color:var(--muted); }
+    .foot{ padding:22px 0 34px; }
+  </style>
 </head>
 
 <body>
@@ -13,75 +115,44 @@
     <div class="wrap">
       <a class="brand" href="#top">Gurli O.K.</a>
       <nav class="nav">
+        <a href="gurli-octavia.html">Gurli Octavia</a>
         <a href="#bio">Biography</a>
         <a href="#credentials">Credentials</a>
         <a href="#professional-record">Professional record</a>
-        <a href="#selected-works">Selected works</a>
-        <a href="#international">International</a>
       </nav>
     </div>
   </header>
 
   <main id="top" class="wrap">
-
     <section class="hero">
       <h1>Gurli O.K.</h1>
-      <p class="kicker">Gurli Octavia Kofoed</p>
+      <p class="muted">Gurli Octavia Kofoed</p>
     </section>
 
     <section id="bio" class="card">
-      <h1>Biography</h1>
-      <p>Gurli O.K. is a composer, writer and producer with formal training in songwriting and music production. She holds an MA in Creative Music Production, ICMP, London, 2025, and a BA in Songwriting, Det Jyske Musikkonservatorium, 2020. Her work spans composition, production, and release execution across EP and album formats.</p>
-      <p>Her professional record includes booking agreements with Beatbox Booking, 2017-2019, and Bullet Booking, 2019-2022, alongside recording and collaboration contracts with LACOBR, 2016-2018, and Sony, 2018-2020. These engagements sit within a sustained period of releases supported by live activity and radio support.</p>
-      <p>Her release catalogue includes the album <em>I Could Be Blossoming Instead</em>, 2021, and EP releases including <em>Metanoia</em>, 2019, Sony, as well as <em>Lunacy</em>, LACOBR, and <em>Philophobia</em>. Work is developed through contemporary production toolchains, with documented use of Logic Pro X and Pro Tools, and studio contexts involving SSL and Audient systems.</p>
-      <p>Her practice has been developed through documented studies, practice as research and residency periods across the world. Her international record includes UK-based study and additional residency and short-term work periods in the UK, France, Germany, and the US, documented across 2017-2025.</p>
+      <h2>Biography</h2>
+      <p>Gurli O.K. is a composer, writer and producer with formal training in songwriting and music production. She holds an MA in Creative Music Production, ICMP, London, 2025, and a BA in Songwriting, Det Jyske Musikkonservatorium, 2020.</p>
     </section>
-    <a href="gurli-octavia.html">Gurli Octavia</a>
 
     <section id="credentials" class="card">
-      <h1>Credentials</h1>
+      <h2>Credentials</h2>
       <ul class="list">
-        <li>MA, Creative Music Production, ICMP, London, 2025</li>
-        <li>BA, Songwriting, Det Jyske Musikkonservatorium, 2020</li>
+        <li>MA, Creative Music Production, ICMP, London (2025)</li>
+        <li>BA, Songwriting, Det Jyske Musikkonservatorium (2020)</li>
       </ul>
     </section>
 
     <section id="professional-record" class="card">
-      <h1>Professional record</h1>
+      <h2>Professional record</h2>
       <ul class="list">
-        <li>Booking agreement, Beatbox Booking, 2017-2019</li>
-        <li>Booking agreement, Bullet Booking, 2019-2022</li>
-        <li>Recording and collaboration contract, LACOBR, 2016-2018</li>
-        <li>Recording and collaboration contract, Sony, 2018-2020</li>
-        <li>Production and studio toolchains: Logic Pro X, Pro Tools, SSL, Audient</li>
-        <li>Live activity and radio support documented in relation to releases</li>
-      </ul>
-    </section>
-
-    <section id="selected-works" class="card">
-      <h1>Selected works</h1>
-      <ul class="list">
-        <li><em>I Could Be Blossoming Instead</em>, album, 2021</li>
-        <li><em>Metanoia</em>, EP, 2019, Sony</li>
-        <li><em>Lunacy</em>, EP, year unknown, LACOBR</li>
-        <li><em>Philophobia</em>, EP, year unknown</li>
-      </ul>
-    </section>
-
-    <section id="international" class="card">
-      <h1>International practice</h1>
-      <ul class="list">
-        <li>UK, study and residency periods, 2017-2025</li>
-        <li>FR, residency periods, 2017-2025</li>
-        <li>DE, residency periods, 2017-2025</li>
-        <li>US, residency and short-term work periods, 2017-2025</li>
+        <li>Booking agreements and label collaborations (2016–2022)</li>
+        <li>Album and EP releases with documented live and radio support</li>
       </ul>
     </section>
 
     <footer class="foot">
       <p class="muted">© <span id="y"></span> Gurli O.K.</p>
     </footer>
-
   </main>
 
   <script>

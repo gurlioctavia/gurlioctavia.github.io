@@ -1,0 +1,181 @@
+zfjifobxbvjbnzntzhfq
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Infinity Letter</title>
+  <style>
+    body{font:16px system-ui;margin:24px;max-width:900px}
+    h1{margin:0 0 10px 0}
+    .seed{white-space:pre-wrap;opacity:.9;margin:0 0 14px 0}
+    .hintWrap{margin:18px 0 10px}
+    .hintLabel{opacity:.65;font-size:13px;margin-bottom:6px}
+    .hint{font-size:56px;letter-spacing:-0.02em;line-height:1.02}
+    textarea{width:100%;min-height:92px;padding:12px;font:16px system-ui}
+    button{font:inherit;padding:10px 14px}
+    .meta{opacity:.7}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .hidden{display:none}
+    .letter{white-space:pre-wrap;margin-top:18px;padding-top:14px;border-top:1px solid #eee}
+    .err{opacity:1}
+  </style>
+</head>
+<body>
+  <h1>Infinity Letter</h1>
+
+  <p class="seed" id="seed">(loading…)</p>
+
+  <div id="openUI">
+    <div class="hintWrap">
+      <div class="hintLabel">The only thing you can see before writing:</div>
+      <div class="hint" id="hint">…</div>
+    </div>
+
+    <p class="meta">Write one sentence and press send. End with . ! or ?</p>
+    <textarea id="sentence" placeholder="(one sentence)"></textarea>
+
+    <div class="row" style="margin-top:10px">
+      <button id="send">Send</button>
+      <span class="meta" id="msg"></span>
+    </div>
+  </div>
+
+  <div id="afterUI" class="hidden">
+    <p class="meta">You’ve written. Here is the full letter so far:</p>
+    <div class="letter" id="fullLetter"></div>
+  </div>
+
+  <div id="closedUI" class="hidden">
+    <p class="meta">The letter is closed. Full letter:</p>
+    <div class="letter" id="closedLetter"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ====== PASTE YOUR SUPABASE DETAILS HERE ======
+    const SUPABASE_URL = "https://zfjifobxbvjbnzntzhfq.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_q77ViXgTiWvPhQFT14Ap8g_yKV4Joyu"; // or anon legacy key
+    // ============================================
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Anonymous session id (stored locally)
+    const sidKey = "infinity_session_id";
+    const sessionId = localStorage.getItem(sidKey) || crypto.randomUUID();
+    localStorage.setItem(sidKey, sessionId);
+
+    const $seed = document.getElementById("seed");
+    const $hint = document.getElementById("hint");
+    const $msg  = document.getElementById("msg");
+
+    const $openUI   = document.getElementById("openUI");
+    const $afterUI  = document.getElementById("afterUI");
+    const $closedUI = document.getElementById("closedUI");
+
+    const $fullLetter   = document.getElementById("fullLetter");
+    const $closedLetter = document.getElementById("closedLetter");
+
+    function setMsg(t, isErr=false){
+      $msg.textContent = t || "";
+      $msg.className = isErr ? "meta err" : "meta";
+    }
+
+    async function loadPublic(){
+      const { data, error } = await sb.rpc("infinity_public_state");
+      if (error) {
+        $seed.textContent = "Error loading state: " + error.message;
+        return;
+      }
+
+      const s = data?.[0];
+      if (!s) {
+        $seed.textContent = "Missing letter row.";
+        return;
+      }
+
+      $seed.textContent = s.seed_text || "";
+      $hint.textContent = s.current_hint || "…";
+
+      if (s.status === "closed") {
+        await showClosed();
+        return;
+      }
+
+      const canSeeFull = await tryShowFullIfAllowed();
+      if (!canSeeFull) {
+        $openUI.classList.remove("hidden");
+        $afterUI.classList.add("hidden");
+        $closedUI.classList.add("hidden");
+      }
+    }
+
+    async function tryShowFullIfAllowed(){
+      const { data, error } = await sb.rpc("infinity_full_for_session", { p_session_id: sessionId });
+      if (error) return false;
+
+      const s = data?.[0];
+      if (!s) return false;
+
+      const full = (s.seed_text ? s.seed_text + " " : "") + (s.full_text || "");
+
+      if (s.status === "closed") {
+        $closedLetter.textContent = full;
+        $closedUI.classList.remove("hidden");
+        $openUI.classList.add("hidden");
+        $afterUI.classList.add("hidden");
+        return true;
+      }
+
+      $fullLetter.textContent = full;
+      $afterUI.classList.remove("hidden");
+      $openUI.classList.add("hidden");
+      $closedUI.classList.add("hidden");
+      return true;
+    }
+
+    async function showClosed(){
+      // In closed state, the RPC allows everyone to read.
+      const { data, error } = await sb.rpc("infinity_full_for_session", { p_session_id: sessionId });
+      if (error || !data?.[0]) {
+        $closedUI.classList.remove("hidden");
+        $openUI.classList.add("hidden");
+        $afterUI.classList.add("hidden");
+        $closedLetter.textContent = $seed.textContent || "";
+        return;
+      }
+
+      const s = data[0];
+      $closedLetter.textContent = (s.seed_text ? s.seed_text + " " : "") + (s.full_text || "");
+      $closedUI.classList.remove("hidden");
+      $openUI.classList.add("hidden");
+      $afterUI.classList.add("hidden");
+    }
+
+    async function send(){
+      const sentence = document.getElementById("sentence").value.trim();
+      if (!sentence) return;
+
+      setMsg("Sending…");
+      const { error } = await sb.rpc("infinity_submit", {
+        p_session_id: sessionId,
+        p_sentence: sentence
+      });
+
+      if (error) {
+        setMsg(error.message, true);
+        return;
+      }
+
+      document.getElementById("sentence").value = "";
+      setMsg("");
+      await tryShowFullIfAllowed();
+    }
+
+    document.getElementById("send").addEventListener("click", send);
+
+    loadPublic();
+    setInterval(loadPublic, 2500);
+  </script>
+</body>
+</html>

@@ -1,11 +1,260 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Gurli Octavia</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gurli O.K.</title>
+  <meta name="description" content="Gurli O.K. — composer, writer, producer." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Gurli Octavia</h1>
-  <p>website maintenance.</p>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#top">Gurli O.K.</a>
+      <nav class="nav">
+        <a href="#bio">Biography</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#professional-record">Professional record</a>
+        <a href="#selected-works">Selected works</a>
+        <a href="#international">International</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1>Gurli O.K.</h1>
+          <p class="kicker">Gurli Octavia Kofoed · Composer · Writer · Producer</p>
+          <p class="lead">Professional record, selected works, and practice context.</p>
+        </div>
+
+        <aside class="hero-card">
+          <p class="label">Quick facts</p>
+          <ul class="facts">
+            <li><span>MA</span><span>Creative Music Production, ICMP (London), 2025</span></li>
+            <li><span>BA</span><span>Songwriting, Det Jyske Musikkonservatorium, 2020</span></li>
+            <li><span>Album</span><span><em>I Could Be Blossoming Instead</em> (2021)</span></li>
+            <li><span>EP</span><span><em>Metanoia</em> (2019, Sony)</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="bio" class="card">
+      <h2>Biography</h2>
+      <p>Gurli O.K. is a composer, writer and producer with formal training in songwriting and music production. She holds an MA in Creative Music Production, ICMP, London, 2025, and a BA in Songwriting, Det Jyske Musikkonservatorium, 2020. Her work spans composition, production, and release execution across EP and album formats.</p>
+      <p>Her professional record includes booking agreements with Beatbox Booking, 2017–2019, and Bullet Booking, 2019–2022, alongside recording and collaboration contracts with LACOBR, 2016–2018, and Sony, 2018–2020. These engagements sit within a sustained period of releases supported by live activity and radio support.</p>
+      <p>Her release catalogue includes the album <em>I Could Be Blossoming Instead</em> (2021) and EP releases including <em>Metanoia</em> (2019, Sony), as well as <em>Lunacy</em> (LACOBR) and <em>Philophobia</em>. Work is developed through contemporary production toolchains, with documented use of Logic Pro X and Pro Tools, and studio contexts involving SSL and Audient systems.</p>
+      <p>Her practice has been developed through documented studies, practice-as-research and residency periods internationally. Her international record includes UK-based study and additional residency and short-term work periods in the UK, France, Germany, and the US, documented across 2017–2025.</p>
+    </section>
+
+    <section id="credentials" class="card">
+      <h2>Credentials</h2>
+      <ul class="list">
+        <li>MA, Creative Music Production, ICMP, London (2025)</li>
+        <li>BA, Songwriting, Det Jyske Musikkonservatorium (2020)</li>
+      </ul>
+    </section>
+
+    <section id="professional-record" class="card">
+      <h2>Professional record</h2>
+      <ul class="list">
+        <li>Booking agreement, Beatbox Booking (2017–2019)</li>
+        <li>Booking agreement, Bullet Booking (2019–2022)</li>
+        <li>Recording and collaboration contract, Like A Can Of Beans Records (LACOBR) (2016–2018)</li>
+        <li>Recording and collaboration contract, Sony (2018–2020)</li>
+        <li>Production and studio toolchains (documented): Logic Pro X, Pro Tools, SSL, Audient</li>
+        <li>Live activity and radio support documented in relation to releases</li>
+      </ul>
+    </section>
+
+    <section id="selected-works" class="card">
+      <h2>Selected works</h2>
+      <ul class="list">
+        <li><em>I Could Be Blossoming Instead</em> — album (2021)</li>
+        <li><em>Metanoia</em> — EP (2019, Sony)</li>
+        <li><em>Lunacy</em> — EP (LACOBR) <span class="muted">(year not listed)</span></li>
+        <li><em>Philophobia</em> — EP <span class="muted">(year not listed)</span></li>
+      </ul>
+    </section>
+
+    <section id="international" class="card">
+      <h2>International practice</h2>
+      <ul class="list">
+        <li>UK — study and residency periods (2017–2025)</li>
+        <li>France — residency periods (2017–2025)</li>
+        <li>Germany — residency periods (2017–2025)</li>
+        <li>US — residency and short-term work periods (2017–2025)</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p><a href="mailto:mail@gurlioctavia.com">mail@gurlioctavia.com</a></p>
+      <p class="muted">Add links: Instagram · Bandcamp · Spotify · Press kit (PDF)</p>
+    </section>
+
+    <footer class="foot">
+      <p class="muted">© <span id="y"></span> Gurli O.K.</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+<p class="muted">Detailed record below.</p>
+:root{
+  --bg:#0b0b0c;
+  --panel:rgba(20,20,22,.78);
+  --text:#f2f2f2;
+  --muted:#b5b5b5;
+  --line:rgba(255,255,255,.10);
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 700px at 25% 10%, #1b1b22, var(--bg));
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+a:hover{ opacity:.9; }
+
+.wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.top{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(11,11,12,.70);
+  border-bottom: 1px solid var(--line);
+}
+
+.top .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+}
+
+.brand{
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+
+.nav{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav a{
+  text-decoration: none;
+  color: var(--muted);
+  padding: 6px 8px;
+  border-radius: 999px;
+}
+
+.nav a:hover{
+  color: var(--text);
+  background: rgba(255,255,255,.06);
+}
+
+.hero{ padding: 42px 0 12px; }
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+h1{
+  font-size: 52px;
+  margin: 0 0 8px;
+  letter-spacing: -.02em;
+}
+
+.kicker{ margin: 0 0 14px; color: var(--muted); }
+.lead{ margin: 0; max-width: 70ch; }
+
+.hero-card{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.label{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.facts{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.facts li{
+  display:grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.facts li:first-child{ border-top: none; padding-top: 0; }
+.facts span:first-child{ color: var(--muted); }
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 18px 0;
+  box-shadow: var(--shadow);
+}
+
+h2{
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: .01em;
+}
+
+.list{
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.muted{ color: var(--muted); }
+
+.foot{
+  padding: 22px 0 34px;
+}
+
+@media (min-width: 900px){
+  .hero-inner{ grid-template-columns: 1.25fr .75fr; }
+}

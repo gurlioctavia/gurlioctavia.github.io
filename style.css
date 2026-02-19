@@ -1,13 +1,14 @@
 :root{
-  --bg:#0b0b0c;
-  --panel:rgba(20,20,22,.78);
-  --text:#f2f2f2;
-  --muted:#b5b5b5;
-  --line:rgba(255,255,255,.10);
-  --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --bg:#0e1414;
+  --panel:#141c1c;
+  --text:#eaeeee;
+  --muted:#9fb1ad;
+  --accent:#3aa6a6;
+  --headline:#d4a23a;
+  --line:rgba(255,255,255,.12);
 }
-
+h1, h2{ color: var(--headline); }
+a{ color: var(--accent); }
 *{ box-sizing:border-box; }
 html,body{ margin:0; padding:0; }
 
@@ -22,7 +23,7 @@ a{ color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 a:hover{ opacity:.9; }
 
 .wrap{
-  max-width: 980px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 24px;
 }
